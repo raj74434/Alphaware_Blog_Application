@@ -26,7 +26,7 @@ public class CategoryController {
         return new ResponseEntity<>(categoryService.deleteCategory(categoryId), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("{/{categoryId}}")
+    @GetMapping("/{categoryId}")
     public ResponseEntity<Category> getCategory(Integer categoryId) throws Exception {
         return new ResponseEntity<>(categoryService.getCategory(categoryId), HttpStatus.OK);
     }
