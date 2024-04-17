@@ -43,12 +43,12 @@ public class AuthConfig {
                 )
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
-                        .requestMatchers( "/api/user/test").permitAll()
+//                        .requestMatchers( "/api/user/test").permitAll()
                         .requestMatchers( "/api/user/register").permitAll()
                         .requestMatchers( "/api/user/login").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterAfter(new JWTTockenGeneratorFilter(), BasicAuthenticationFilter.class)
+//                .addFilterAfter(new JWTTockenGeneratorFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new JWTValidationFilter(), BasicAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());

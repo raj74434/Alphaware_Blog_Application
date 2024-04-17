@@ -1,7 +1,10 @@
 package com.application.blog.services;
 
+import com.application.blog.dto.PostDTO;
 import com.application.blog.models.Post;
+import com.application.blog.models.Users;
 import com.application.blog.repository.PostRepo;
+import com.application.blog.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -15,20 +18,38 @@ public class PostServiceImpl implements PostService{
     @Autowired
     private PostRepo postRepo;
 
+    @Autowired
+    private UserRepo userRepo;
+
     @Override
-    public Post createPost(Post post){
-        return postRepo.save(post);
+    public Post createPost(PostDTO postDTO, Integer userId) throws Exception {
+
+           Optional<Users>userTem= userRepo.findById(userId);
+
+
+            Post post=new Post();
+        if(userTem.isPresent()){
+            post.setUsers(userTem.get());
+            post.setDescription(postDTO.getDescription());
+            post.setTitle(postDTO.getTitle());
+
+            return postRepo.save(post);
+        }
+        else{
+            throw new Exception("No user found with this id"+userId);
+        }
+
     }
 
     @Override
-    public Post  updatePost( Post post ,  Integer postId) throws Exception {
+    public Post  updatePost( PostDTO postDTO ,  Integer postId) throws Exception {
         Optional<Post> postTem = postRepo.findById(postId);
 
         if(postTem.isPresent()) {
 
             Post oldPost = postTem.get();
-            oldPost.setTitle(post.getTitle());
-            oldPost.setDesc(post.getDesc());
+            oldPost.setTitle(postDTO.getTitle());
+            oldPost.setDescription(postDTO.getDescription());
 
             return postRepo.save(oldPost);
 
@@ -38,14 +59,14 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post deletePosts(Integer postId) throws Exception {
+    public String deletePosts(Integer postId) throws Exception {
 
         Optional<Post> postTem = postRepo.findById(postId);
 
         if(postTem.isPresent()) {
 
             postRepo.deleteById(postId);
-            return postTem.get();
+            return "deletion successful";
         }else {
             throw new Exception("Post doesn't exist with this id "+postId);
         }

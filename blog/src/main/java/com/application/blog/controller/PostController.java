@@ -1,6 +1,9 @@
 package com.application.blog.controller;
 
+import com.application.blog.dto.PostDTO;
 import com.application.blog.models.Post;
+import com.application.blog.services.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,29 +12,32 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/posts")
 public class PostController {
 
-    @PostMapping("/")
-    public ResponseEntity<String>  createNewPost(@RequestBody Post post){
+    @Autowired
+    private PostService postService;
 
-        return new ResponseEntity<>("Created", HttpStatus.CREATED);
+    @PostMapping("/{userId}")
+    public ResponseEntity<Post>  createNewPost(@RequestBody PostDTO postDTO,@PathVariable Integer userId) throws Exception {
+
+        return new ResponseEntity<>(postService.createPost(postDTO,userId), HttpStatus.CREATED);
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<String>  getPost(@PathVariable Integer postId){
+    public ResponseEntity<Post>  getPost(@PathVariable Integer postId) throws Exception {
 
-        return new ResponseEntity<>("Created", HttpStatus.CREATED);
+        return new ResponseEntity<>(postService.getPostsById(postId), HttpStatus.CREATED);
     }
 
 
     @DeleteMapping("/{postId}")
-    public ResponseEntity<String>  deletePost(@PathVariable Integer postId){
+    public ResponseEntity<String>  deletePost(@PathVariable Integer postId) throws Exception {
 
-        return new ResponseEntity<>("Created", HttpStatus.CREATED);
+        return new ResponseEntity<>(postService.deletePosts(postId), HttpStatus.CREATED);
     }
 
     @PutMapping("/{postId}")
-    public ResponseEntity<String>  updatePost(@RequestBody Post post ,@PathVariable Integer postId){
+    public ResponseEntity<Post>  updatePost(@RequestBody PostDTO postDTO ,@PathVariable Integer postId) throws Exception {
 
-        return new ResponseEntity<>("Created", HttpStatus.CREATED);
+        return new ResponseEntity<>(postService.updatePost(postDTO,postId), HttpStatus.CREATED);
     }
 
 }

@@ -15,12 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@OpenAPIDefinition(info = @Info(title = "REST API", version = "1.1"),
-//        security = {
-//                @SecurityRequirement(name = "basicAuth"),
-//                @SecurityRequirement(name = "bearerToken")
-//        }
-//)
 @RequestMapping("/api/user")
 public class UsersController {
 
@@ -39,11 +33,11 @@ public class UsersController {
         return new ResponseEntity<>(usersService.registerUser(users), HttpStatus.CREATED);
     }
 //
-//    @PostMapping("/login")
-//    public ResponseEntity<String> registerUser(@RequestBody UserDTO users) throws ServletException {
-//        System.out.println("Login called");
-//        return new ResponseEntity<>(usersService.loginUser(users), HttpStatus.CREATED);
-//    }
+    @PostMapping("/login")
+    public ResponseEntity<String> registerUser(@RequestBody UserDTO users) throws Exception {
+        System.out.println("Login called");
+        return new ResponseEntity<>(usersService.loginUser(users), HttpStatus.CREATED);
+    }
 
     @GetMapping ("/test2")
     public ResponseEntity<String> test2(){

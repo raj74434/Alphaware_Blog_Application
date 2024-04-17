@@ -18,16 +18,18 @@ public class Post {
 
     private String title;
 
-    private  String desc;
+    private  String description;
 
     @OneToMany(mappedBy = "post")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private List<Comment> comments=new ArrayList<>();
 
     @ManyToMany(mappedBy = "posts")
+    @JsonIgnore
     private List<Category> categories=new ArrayList<>();
 
     @ManyToOne
+    @JsonIgnore
     private Users users;
 
 }

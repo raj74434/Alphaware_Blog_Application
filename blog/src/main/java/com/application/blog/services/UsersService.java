@@ -11,6 +11,8 @@ public interface UsersService {
 
 //    public String loginUser(UserDTO userDTO) throws ServletException;
 
-    public Users findUserByNumber(String password,String number);
+    String loginUser(UserDTO userDTO) throws Exception;
+
+    public Users findUserByNumber(String password, String number);
 
 }

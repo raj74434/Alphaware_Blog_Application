@@ -42,7 +42,7 @@ public class JWTValidationFilter extends OncePerRequestFilter {
         if(jwt != null) {
 
             try {
-
+                System.out.println("entered in try block");
                 //extracting the word Bearer
                 jwt = jwt.substring(7);
 
@@ -53,15 +53,18 @@ public class JWTValidationFilter extends OncePerRequestFilter {
 
                 Claims claims= Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 
-
+                System.out.println("Tring to get username");
                 String username= String.valueOf(claims.get("username"));
-
+                String password=String.valueOf(claims.get("password"));
+                System.out.println(username);
+//                System.out.println(password);
 
                 String role= (String)claims.get("role");
-
+                System.out.println("checking for role");
                 List<GrantedAuthority> authorities = new ArrayList<>();
-                authorities.add(new SimpleGrantedAuthority(role));
-
+                System.out.println("checking for list");
+//                authorities.add(new SimpleGrantedAuthority(role));
+                System.out.println("checking for auth");
                 Authentication auth = new UsernamePasswordAuthenticationToken(username, null, authorities);
 
                 SecurityContextHolder.getContext().setAuthentication(auth);

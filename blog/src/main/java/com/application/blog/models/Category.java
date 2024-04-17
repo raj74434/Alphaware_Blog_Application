@@ -1,5 +1,6 @@
 package com.application.blog.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,11 +19,12 @@ public class Category {
 
     private String categoryName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany
+    @JsonIgnore
     private List<Post> posts=new ArrayList();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+
     private Users users;
 
 }
