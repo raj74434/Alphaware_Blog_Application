@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 //                @SecurityRequirement(name = "bearerToken")
 //        }
 //)
-//@RequestMapping("/api/user")
+@RequestMapping("/api/user")
 public class UsersController {
 
     @Autowired
