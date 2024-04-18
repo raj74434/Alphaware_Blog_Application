@@ -37,7 +37,7 @@ public class JWTValidationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String jwt= request.getHeader(SecurityConstants.JWT_HEADER);
-        System.out.print("Checking for Jwt");
+        System.out.println("Checking for Jwt");
 
         if(jwt != null) {
 
@@ -55,15 +55,19 @@ public class JWTValidationFilter extends OncePerRequestFilter {
 
                 System.out.println("Tring to get username");
                 String username= String.valueOf(claims.get("username"));
-                String password=String.valueOf(claims.get("password"));
+
                 System.out.println(username);
-//                System.out.println(password);
+                System.out.println(claims);
 
                 String role= (String)claims.get("role");
                 System.out.println("checking for role");
                 List<GrantedAuthority> authorities = new ArrayList<>();
                 System.out.println("checking for list");
-//                authorities.add(new SimpleGrantedAuthority(role));
+                 claims.get("roles");
+                 List<String> allRoles=(List<String>)claims.get("roles");
+                System.out.println(allRoles.get(0));
+
+                authorities.add(new SimpleGrantedAuthority(allRoles.get(0)));
                 System.out.println("checking for auth");
                 Authentication auth = new UsernamePasswordAuthenticationToken(username, null, authorities);
 
@@ -79,6 +83,7 @@ public class JWTValidationFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
 
 
     @Override

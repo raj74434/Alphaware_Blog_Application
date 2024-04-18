@@ -43,7 +43,12 @@ public class AuthConfig {
                 )
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
-//                        .requestMatchers( "/api/user/test").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/user/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/user/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/category").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/category").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/category").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/api/posts").hasAnyRole("ADMIN")
                         .requestMatchers( "/api/user/register").permitAll()
                         .requestMatchers( "/api/user/login").permitAll()
                         .anyRequest().authenticated()

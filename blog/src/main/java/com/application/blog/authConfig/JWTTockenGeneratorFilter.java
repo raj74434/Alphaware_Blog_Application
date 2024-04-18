@@ -54,12 +54,22 @@ public class JWTTockenGeneratorFilter extends OncePerRequestFilter {
 
     }
 
-    private String populateAuthorities(Collection< ? extends GrantedAuthority>  collection){
-        String role="";
-        for(GrantedAuthority auth:collection){
-            role=auth.getAuthority();
+
+//    This is old code
+//    private String populateAuthorities(Collection< ? extends GrantedAuthority>  collection){
+//        String role="";
+//        for(GrantedAuthority auth:collection){
+//            role=auth.getAuthority();
+//        }
+//        return role;
+//    }
+
+    private String populateAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        StringBuilder roles = new StringBuilder();
+        for (GrantedAuthority authority : authorities) {
+            roles.append(authority.getAuthority()).append(",");
         }
-        return role;
+        return roles.toString();
     }
 
     @Override

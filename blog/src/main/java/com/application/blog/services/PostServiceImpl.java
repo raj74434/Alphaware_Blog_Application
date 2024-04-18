@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,7 @@ public class PostServiceImpl implements PostService{
             post.setUsers(userTem.get());
             post.setDescription(postDTO.getDescription());
             post.setTitle(postDTO.getTitle());
+            post.setDate(LocalDate.now());
 
             return postRepo.save(post);
         }
@@ -51,6 +53,7 @@ public class PostServiceImpl implements PostService{
             Post oldPost = postTem.get();
             oldPost.setTitle(postDTO.getTitle());
             oldPost.setDescription(postDTO.getDescription());
+            oldPost.setDate(LocalDate.now());
 
             return postRepo.save(oldPost);
 
@@ -90,7 +93,7 @@ public class PostServiceImpl implements PostService{
     }
 
     public List<Post> getAllPost() throws Exception{
-        return postRepo.findAll();
+        return postRepo.findByDate(LocalDate.now());
     }
 
 }

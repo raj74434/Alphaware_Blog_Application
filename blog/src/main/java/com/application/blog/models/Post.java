@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class Post {
     private String title;
 
     private  String description;
+
+    private LocalDate date;
 
     @OneToMany(mappedBy = "post")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
