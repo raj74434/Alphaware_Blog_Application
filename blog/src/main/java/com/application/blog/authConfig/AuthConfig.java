@@ -68,7 +68,7 @@ public class AuthConfig {
 
     CorsConfigurationSource myWebsiteConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://diceweather.netlify.app","http://localhost:3000","*"));
+        configuration.setAllowedOrigins(Arrays.asList("https://alphawareblogapplication-production-b462.up.railway.app","http://localhost:3000"));
         configuration.setAllowedMethods(Collections.singletonList("*"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Collections.singletonList("*"));
