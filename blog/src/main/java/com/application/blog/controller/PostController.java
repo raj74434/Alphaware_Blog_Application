@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
@@ -25,6 +27,12 @@ public class PostController {
     public ResponseEntity<Post>  getPost(@PathVariable Integer postId) throws Exception {
 
         return new ResponseEntity<>(postService.getPostsById(postId), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Post>>  getAllPost() throws Exception {
+
+        return new ResponseEntity<>(postService.getAllPost(), HttpStatus.CREATED);
     }
 
 

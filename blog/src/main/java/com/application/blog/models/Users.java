@@ -26,9 +26,9 @@ public class Users {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private List<Post> posts=new ArrayList<>();
 
-//    @OneToMany(mappedBy = "users")
-//    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-//    private List<Category> category=new ArrayList<>();
+    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private List<Category> category=new ArrayList<>();
 
 
 

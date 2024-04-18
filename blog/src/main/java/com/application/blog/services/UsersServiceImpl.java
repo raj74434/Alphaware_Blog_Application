@@ -7,16 +7,21 @@ import com.application.blog.repository.UserRepo;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.crypto.SecretKey;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -67,7 +72,6 @@ public class UsersServiceImpl implements UsersService {
                     setIssuer("Raj")
                     .setSubject("Jwt tocken")  //these two are optional
                     .claim("username",phone)
-
 //    It call method  ===> populateAuthorities <====  which return a string with comma seprated eg=> ADMIN,CUSTOMER
 //                    .claim("role",populateAuthorities(authentication.getAuthorities()))
                     .setIssuedAt(new Date())
@@ -78,16 +82,7 @@ public class UsersServiceImpl implements UsersService {
         catch (AuthenticationException e) {
             throw new Exception("Incorrect username or password", e);
         }
-
-
-
-
-
-
     }
-
-
-
 
 
     private String populateAuthorities(Collection< ? extends GrantedAuthority> collection){
@@ -99,11 +94,51 @@ public class UsersServiceImpl implements UsersService {
     }
 
 
+    @Override
+    public List<Users> getAllUsers() throws Exception {
+        return userRepo.findAll();
+    }
+
+    @Override
+    public Users getUserById( Integer userId) throws Exception {
+        Optional<Users> userOptional=userRepo.findById(userId);
+
+        if(userOptional.isPresent()){
+            return userOptional.get();
+        }
+        else throw new Exception("No User found with this id "+userId);
+
+    }
+
+    @Override
+    public String deleteUserById( Integer userId) throws Exception{
+        Optional<Users> userOptional=userRepo.findById(userId);
+        if(userOptional.isPresent()){
+            try{
+                userRepo.deleteById(userId);
+                return "sucess";
+            }
+            catch (Exception exception){
+                throw new Exception("unable to delete user with id "+userId);
+            }
+
+        }
+        else throw new Exception("No User found with this id "+userId);
+
+    }
+
+
+
+
+
 
     @Override
     public Users findUserByNumber(String password,String number) {
         System.out.println(password);
       return  userRepo.findByPhone(number);
     }
+
+
+
 
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -86,6 +87,10 @@ public class PostServiceImpl implements PostService{
             throw new Exception("Post doesn't exist with this id "+postId);
         }
 
+    }
+
+    public List<Post> getAllPost() throws Exception{
+        return postRepo.findAll();
     }
 
 }

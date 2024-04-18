@@ -14,19 +14,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 public class UsersController {
 
     @Autowired
     private UsersService usersService;
-
-
-    @GetMapping ("/test")
-    public ResponseEntity<String> test(){
-        System.out.println("test called");
-        return new ResponseEntity<>("Yes", HttpStatus.OK);
-    }
+    
 
     @PostMapping("/register")
     public ResponseEntity<Users> registerUser(@RequestBody Users users){
@@ -35,14 +31,24 @@ public class UsersController {
 //
     @PostMapping("/login")
     public ResponseEntity<String> registerUser(@RequestBody UserDTO users) throws Exception {
-        System.out.println("Login called");
+
         return new ResponseEntity<>(usersService.loginUser(users), HttpStatus.CREATED);
     }
 
-    @GetMapping ("/test2")
-    public ResponseEntity<String> test2(){
-        System.out.println("test2 called");
-        return new ResponseEntity<>("Yes2", HttpStatus.OK);
+    @GetMapping("/")
+    public ResponseEntity<List<Users>> getAllUsers() throws Exception {
+       return new ResponseEntity<>(usersService.getAllUsers(),HttpStatus.OK);
     }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<Users> getUserById(@PathVariable Integer userId) throws Exception {
+        return new ResponseEntity<>(usersService.getUserById(userId),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteUserById(@PathVariable Integer userId) throws Exception {
+        return new ResponseEntity<>(usersService.deleteUserById(userId),HttpStatus.ACCEPTED);
+    }
+
 
 }
