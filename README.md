@@ -74,5 +74,6 @@
     </ol>
  
  ![Swagger Image1](assets/swagger1.png)
+  ![Swagger Image1](assets/swagger2.png)
 </div>
     
