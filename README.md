@@ -9,7 +9,6 @@
         <li>Swagger</li>
         <li>MySQL</li>
     </ul>
-
     <h2>Entities</h2>
     <ol>
         <li><strong>User</strong>: Represents users of the application.</li>
@@ -17,20 +16,16 @@
         <li><strong>Comment</strong>: Represents comments made on blog posts.</li>
         <li><strong>Category</strong>: Represents categories for organizing blog posts.</li>
     </ol>
-
     <h2>Users</h2>
     <p>There are two types of users:</p>
     <ul>
         <li><strong>Admin</strong>: Has full access to all API endpoints.</li>
         <li><strong>User</strong>: Regular users with limited access to API endpoints.</li>
     </ul>
-
     <h2>Database</h2>
     <p>The application uses MySQL as the database to store user information, blog posts, comments, and categories.</p>
-
     <h2>Swagger</h2>
     <p>Swagger is integrated into the application to provide a user-friendly interface for viewing and interacting with the API endpoints. It allows users to explore the available endpoints, their parameters, and responses.</p>
-
     <h2>API Endpoints</h2>
     <p>The following API endpoints are available in the application:</p>
     <ol>
@@ -40,8 +35,7 @@
                 <li> Sub-end point :- /register  & Method POST : Create a new user</li>
                 <li> Sub-end point :- /login  & Method POST : login a user by jwt tocken </li>
                 <li>PUT: Update an existing user</li>
-                <li>DELETE: Delete a user</li>
-                
+                <li>DELETE: Delete a user</li>       
             </ul>
         </li>
         <li><code>/api/posts</code>
@@ -69,7 +63,6 @@
             </ul>
         </li>
     </ol>
-
     <h2>How to Run</h2>
     <p>To run the application, follow these steps:</p>
     <ol>
@@ -79,6 +72,5 @@
         <li>Run the application using the generated JAR file.</li>
         <li>Access the Swagger UI to interact with the API endpoints.</li>
     </ol>
-
 </div>
     
