@@ -64,6 +64,7 @@
         </li>
     </ol>
     <h2>How to Run</h2>
+ <h3><a href="https://alphawareblogapplication-production-b462.up.railway.app/swagger-ui/index.html#">Run Deployed application</a></h3>
     <p>To run the application, follow these steps:</p>
     <ol>
         <li>Clone the repository.</li>
