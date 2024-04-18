@@ -1,7 +1,7 @@
 # Alphaware_Blog_Application
  <h2>Overview</h2>
     <p>This project is a blog application developed using Spring Boot, Maven, and Swagger. It allows users to create, view, edit, and delete blog posts along with commenting on posts. The application supports two types of users: admin and regular users. Admin users have access to all API endpoints while regular users have limited access.</p>
-
+<div>
     <h2>Technologies Used</h2>
     <ul>
         <li>Spring Boot</li>
@@ -79,3 +79,6 @@
         <li>Run the application using the generated JAR file.</li>
         <li>Access the Swagger UI to interact with the API endpoints.</li>
     </ol>
+
+</div>
+    
