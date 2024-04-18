@@ -72,6 +72,7 @@
         <li>Run the application using the generated JAR file.</li>
         <li>Access the Swagger UI to interact with the API endpoints.</li>
     </ol>
+ 
  ![Swagger Image1](assets/swagger1.png)
 </div>
     
